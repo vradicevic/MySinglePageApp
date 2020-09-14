@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Page App</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <script src="./static/js/uimanipulator.js"></script>
+    
+</head>
+<body>
+    <nav class="nav">
+        <a href="/" class="nav__link logged-in" style="display: none;" data-link>Početna</a>
+        <a href="/igraci" class="nav__link logged-in" style="display: none;" data-link>Igrači</a>
+        <a href="/formacija" class="nav__link logged-in" style="display: none;" data-link>Formacija</a>
+        <a href="/login" class="nav__link logged-out" id="login" style="display: none;" data-link>Prijava</a> 
+        <a href="/stvorigraca" class="nav__link admin logged-in" id="createPlayer" style="display: none;"
+            data-link>Unesi novog igrača</a>
+        <a href="/logout" class="nav__link logged-in" id="logout" style="display: none;" data-link>Odjava</a>
+        <a href="/registracija" class="nav__link logged-out" id="register" style="display: none;" data-link>Registriraj se</a>
+        
+    </nav>
+        
+    <div id="app"></div>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js" ></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-functions.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+
+
+    <script>
+
+        var firebaseConfig = {
+                apiKey: "AIzaSyAEC5F_3eZm0oxQ9z2_NsofN2Sgvu-R4uY",
+                authDomain: "webnogometniklub.firebaseapp.com",
+                databaseURL: "https://webnogometniklub.firebaseio.com",
+                projectId: "webnogometniklub",
+                storageBucket: "webnogometniklub.appspot.com",
+                messagingSenderId: "722824122763",
+                appId: "1:722824122763:web:7d8f2d37eff81f7b031f8e"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            var auth= firebase.auth();
+            var db = firebase.database();
+            var functions = firebase.functions();
+            var storage = firebase.storage();
+
+    </script>
+    <script type="module" src="/static/js/index.js"></script>
+    
+    
+</body>
+</html>
