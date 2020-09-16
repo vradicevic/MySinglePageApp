@@ -13,7 +13,7 @@ export default class extends AbstractView {
     async getHtml() {
         if(this.user){
             let html = 
-                `<h1>Igraci</h1><div class="container" style="margin-top: 40px;">
+                `<h1>Igrači</h1><div class="container" style="margin-top: 40px;">
                 <ul id = "listOfPlayers" >`
                 
 
@@ -24,10 +24,29 @@ export default class extends AbstractView {
             
             <div class="tooltip collapsible">
              
-            ${data.name + data.surname}
+            ${data.name +' '+  data.surname}
             </div>
             <div class="content">
-            Fifa id:${data.fifaid} | Position:${data.position} | Scores:${data.scores} | Red cards active:${data.cards.red.active} | Yellow cards active:${data.cards.yellow.active}
+            <table>
+            <tr>
+                <td>Fifa id:${data.fifaid}</td> 
+            </tr>
+            <tr>
+                <td>Position:${data.position}</td>
+                
+            </tr>
+            <tr>
+                <td>Scores:${data.scores}</td>
+                
+            </tr>
+            <tr>
+                <td>Red cards active:${data.cards.red.active}</td>
+            </tr>
+            <tr>
+                <td>Yellow cards active:${data.cards.yellow.active}</td>
+                
+            </tr>
+            </table>
             </div>
             </li>`
             ;

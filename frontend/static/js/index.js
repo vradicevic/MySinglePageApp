@@ -1,43 +1,25 @@
 import Pocetna from "./views/Pocetna.js";
 import Igraci from "./views/Igraci.js";
-import Formacija from "./views/Formacija.js";
-import IgracView from "./views/IgracView.js";
 import Login from "./views/Login.js";
 import Registracija from "./views/Registracija.js";
 import StvoriIgraca from "./views/StvoriIgraca.js";
+
+
+
 
 const loggedinLinks = document.querySelectorAll('.logged-in');
 const loggedoutLinks = document.querySelectorAll('.logged-out');
 const adminItems = document.querySelectorAll('.admin');
 
-/* var firebaseConfig = {
-    apiKey: "AIzaSyAEC5F_3eZm0oxQ9z2_NsofN2Sgvu-R4uY",
-    authDomain: "webnogometniklub.firebaseapp.com",
-    databaseURL: "https://webnogometniklub.firebaseio.com",
-    projectId: "webnogometniklub",
-    storageBucket: "webnogometniklub.appspot.com",
-    messagingSenderId: "722824122763",
-    appId: "1:722824122763:web:7d8f2d37eff81f7b031f8e"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig); */
+
 var currentUser = auth.user;
 var database=null
-/* db.ref(`clubs/${currentUser.club}/players`).on('value', function (snapshot) {
-    database= snapshot;
-}).catch(
-    function (error) {
-
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log("is not yet set")
-    }
-); */
-var currentUser=auth.user;
 
 auth.onAuthStateChanged(user => {
     if (user) {
+        
         user.getIdTokenResult().then(getIdTokenResult => {
+            if (typeof getIdTokenResult.claims.club=="undefined"){auth.signOut().then();}
             user.club= getIdTokenResult.claims.club;
             user.admin=getIdTokenResult.claims.admin;
             currentUser = user;
@@ -51,15 +33,15 @@ auth.onAuthStateChanged(user => {
         
 
     } else {
-        currentUser = auth.user;
+        currentUser=auth.user;
         navigateTo("/")
 
         setupUI();
     };
 });
 var setupUI = function (user) {
+
     if (user) {
-        
         loggedinLinks.forEach(
             item => { item.style.display = "block" }
 
@@ -100,7 +82,7 @@ const navigateTo = (url)=>{
 };
 
 const router = async ()=>{
-   
+    
     const routes=[
         {
             path: "/",
@@ -110,15 +92,8 @@ const router = async ()=>{
             path: "/igraci",
             view: Igraci
         },
-        {
-            path: "/igraci/:id",
-            view: IgracView
-        },
-        {
-            path: "/formacija",
-            view: Formacija
-        }
-        ,
+    
+       
         {
             path: "/login",
             view: Login
@@ -192,8 +167,9 @@ function onViewsLoaded() {
                     club: club
                 }
                 ).then(result => {
-                    signupForm.reset();
-                    window.location.href = '/'
+                    navigateTo("/login");
+                    window.alert("Uspješno ste se registrirali. Sada se prijavite!");
+                    
 
                 }).catch(function (error) {
                     var errorCode = error.code;
@@ -272,13 +248,19 @@ function onViewsLoaded() {
             const addCustomClaims = functions.httpsCallable('addCustomClaims');//stvaranje reference na clou funkciju
             
             addCustomClaims({ email: adminForm['admin-email'].value }).then( result => {
-                
+                var info = document.getElementById('result');
+                info.style.display="block";
+                setTimeout(() => {
+                    info.style.display = "none";
+                    adminForm.reset();
+
+                }, 1000);
             }).catch(function (error) {
-                console.log("Error");
+                console.log(error);
 
             });
             
-            window.location.href = '/'
+            
         });
     }
     
@@ -305,13 +287,13 @@ document.addEventListener("DOMContentLoaded",(e)=>{
         }
     })
     document.querySelector("#logout").addEventListener("click", e=>{
+        currentUser = auth.user;
+        database = null;
         auth.signOut().then(()=>
             {   
                 currentUser=auth.user;
-                navigateTo("/");
-                
                 database=null;
-                setupUI();
+                
             }
         );
     });

@@ -5,6 +5,7 @@ body {
     font-size: 18px;
 }
 
+
 .nav {
     position: fixed;
     top: 0;
@@ -15,7 +16,7 @@ body {
 }
 
 .nav__link {
-    display: block;
+    
     padding: 12px 18px;
     text-decoration: none;
     color: #eeeeee;
@@ -30,6 +31,13 @@ body {
     margin: 2em;
     line-height: 1.5;
     font-weight: 500;
+}
+#admin-div {
+  border:none;
+  background-color: #777;
+  color: white;
+    padding: 18px;
+
 }
 
 a {

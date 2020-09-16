@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single Page App</title>
+    <title>Moj Nogometni Klub</title>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
@@ -11,15 +11,17 @@
     
 </head>
 <body>
-    <nav class="nav">
+    
+    <nav class="nav" id="nav">
         <a href="/" class="nav__link logged-in" style="display: none;" data-link>Početna</a>
         <a href="/igraci" class="nav__link logged-in" style="display: none;" data-link>Igrači</a>
-        <a href="/formacija" class="nav__link logged-in" style="display: none;" data-link>Formacija</a>
+        
         <a href="/login" class="nav__link logged-out" id="login" style="display: none;" data-link>Prijava</a> 
         <a href="/stvorigraca" class="nav__link admin logged-in" id="createPlayer" style="display: none;"
             data-link>Unesi novog igrača</a>
         <a href="/logout" class="nav__link logged-in" id="logout" style="display: none;" data-link>Odjava</a>
         <a href="/registracija" class="nav__link logged-out" id="register" style="display: none;" data-link>Registriraj se</a>
+        
         
     </nav>
         

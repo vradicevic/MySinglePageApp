@@ -13,3 +13,12 @@ for (i = 0; i < coll.length; i++) {
     });
 }
 
+var toggleMenu= function (){
+   var nav =document.getElementById('nav');
+    if (nav.className==="nav"){
+        nav.className +=".respon"
+   }else{
+        nav.className = "nav"
+   }
+
+}

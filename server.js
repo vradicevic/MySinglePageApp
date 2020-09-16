@@ -1,10 +1,9 @@
 const express = require("express");
 const path = require("path");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const csrf = require("csurf");
+
+
 //const admin = require("firebase-admin");
-const serviceAccount = require("./serviceAccountKey.json");
+
 const app = express();
 app.post("/sessionLogin", (req, res) => {
 

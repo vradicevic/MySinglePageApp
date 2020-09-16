@@ -14,8 +14,10 @@ export default class extends AbstractView{
         
         let html=``;
         if(this.user){
+            
             await db.ref(`clubs/${this.user.club}/info`).once('value', function (snapshot) {
                 info = snapshot.val();
+                
             });
             html +=`
                 <h1>Dobrodošli na stranicu nogometnog kluba ${info.name}<img src=${info.logo} class="responsive" alt="logo kluba"></h1>
@@ -27,9 +29,12 @@ export default class extends AbstractView{
             ` 
             if(this.user.admin){
                 html +=`
-                <div>
-                    <form class="center-align" id="admin-form" style="margin: 40px auto; max-width: 300px;">
+                
+                <div id="admin-div">
+                <h3>Forma za postavljanje admina.</h3>
+                    <form id="admin-form" style="margin: 40px auto; max-width: 300px;">
                         <input type="email" placeholder="Korisnički mail" id="admin-email" required>
+                        <p id="result" style="display:none;">Uspješno postavljeno!</p>
                         <button class="pure-material-button-contained">Učini adminom</button>
                     </form>
                 </div>`
@@ -37,7 +42,7 @@ export default class extends AbstractView{
             }
         }
         else html += `<h1>Dobrodošli na stranicu nogometnog kluba</h1>
-                <p>
+                <p >
                     <a href="/login" data-link>Da biste vidjeli informacije o svojem klubu prijavite se</a>
                 <p/>
         `
