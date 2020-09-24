@@ -153,7 +153,7 @@ function onViewsLoaded() {
                 });
         });
     }
-    if(document.title==="Registracija"){
+    if(document.title=="Registracija"){
         const signupForm = document.querySelector('#signup-form');
         signupForm.addEventListener('submit',(e)=>{
             e.preventDefault();
@@ -206,10 +206,11 @@ function onViewsLoaded() {
             });
         }
     }
-    if (document.title === "Stvori Igrača") {
+    if (document.title === "Stvori igrača") {
         const createForm = document.querySelector('#create-form');
-        signupForm.addEventListener('submit', (e) => {
+        createForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            console.log("Here i am");
             let  data = {
                 fifaid: createForm['fifaid'].value,
                 name: createForm['name'].value,
@@ -228,7 +229,8 @@ function onViewsLoaded() {
                     }
                 }
             }
-            db.ref(`clubs/${currentUser.club}/players`).set(data).catch(function (error) {
+            console.log(currentUser.club);
+            db.ref(`clubs/${currentUser.club}/players/${data.fifaid}`).set(data).catch(function (error) {
 
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -236,7 +238,7 @@ function onViewsLoaded() {
 
             });
             createForm.reset();
-            navigateTo("/stvoriigraca");
+            
 
         });
     }

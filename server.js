@@ -1,13 +1,12 @@
 const express = require("express");
 const path = require("path");
 
-
+const dotenv = require('dotenv');
+dotenv.config();
 //const admin = require("firebase-admin");
 
 const app = express();
-app.post("/sessionLogin", (req, res) => {
 
-});
 
 app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")));
 app.get("/*", (req, res) => {
